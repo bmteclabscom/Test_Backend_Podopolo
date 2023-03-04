@@ -1,0 +1,13 @@
+{
+  "type": "object",
+  "properties": {
+    "content": {
+      "type": "string",
+      "errorMessage": {
+        "type": "Invalid value"
+      }
+    }
+  },
+  "required": ["content"],
+  "additionalProperties": false
+}

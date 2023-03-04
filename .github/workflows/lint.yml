@@ -1,0 +1,51 @@
+name: Node CI
+
+on: [push,pull_request]
+
+jobs:
+  Test:
+
+    runs-on: ubuntu-latest
+
+    container:
+      image:  node:16
+
+    services:
+
+      postgres:
+        image: postgres
+        ports:
+        - 5432:5432
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: postgres
+          PGUSER: postgres
+        # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Run linter
+      run: |
+        npm ci
+        npm run lint
+      env:
+        CI: true
+        NODE_ENV: test
+    - name: Run tests
+      run: |
+        npm run generate:certs
+        npm test
+      env:
+        CI: true
+        NODE_ENV: test
+        IS_INIT_DB: false
+        SENDGRID_API_KEY: SG.fakeKey
+        POSTGRES_DB: postgres
+        POSTGRES_HOST: postgres
+        MONGODB_URL: mongodb://mongodb:27017/app-test
+        RECAPTCHA_ENABLED: false

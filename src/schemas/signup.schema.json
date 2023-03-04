@@ -1,0 +1,28 @@
+{
+  "type": "object",
+  "properties": {
+    "email": {
+      "type": "string",
+      "format": "email",
+      "errorMessage": {
+        "format": "Invalid email address"
+      }
+    },
+    "name": {
+      "type": "string",
+      "pattern": "^[\\w\\d\\s-]+$",
+      "errorMessage": {
+        "pattern": "Please enter a valid name"
+      }
+    },
+    "password": {
+      "type": "string",
+      "minLength": 6,
+      "errorMessage": {
+        "minLength": "Password should have at least 6 characters"
+      }
+    }
+  },
+  "required": ["name", "email", "password"],
+  "additionalProperties": false
+}

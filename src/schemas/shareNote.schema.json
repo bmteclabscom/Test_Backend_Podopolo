@@ -1,0 +1,13 @@
+{
+  "type": "object",
+  "properties": {
+    "to": {
+      "type": "integer",
+      "errorMessage": {
+        "type": "Invalid value"
+      }
+    }
+  },
+  "required": ["to"],
+  "additionalProperties": false
+}

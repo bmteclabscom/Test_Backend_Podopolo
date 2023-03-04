@@ -1,0 +1,14 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "errorMessage": {
+        "format": "Invalid Format"
+      }
+    }
+  },
+  "required": ["id"],
+  "additionalProperties": false
+}
